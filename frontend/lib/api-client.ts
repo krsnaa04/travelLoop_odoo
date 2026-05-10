@@ -35,6 +35,13 @@ interface DataEnvelope<T> {
 
 const readData = <T>(response: { data: DataEnvelope<T> }) => response.data.data;
 
+const readAuthData = <T>(response: { data: DataEnvelope<T> | T }) => {
+  const payload = response.data as DataEnvelope<T> | T;
+  return typeof payload === 'object' && payload !== null && 'data' in payload
+    ? payload.data
+    : payload;
+};
+
 const request = async <T>(config: AxiosRequestConfig) => {
   const response = await client.request<DataEnvelope<T>>(config);
   return readData(response);
@@ -42,20 +49,20 @@ const request = async <T>(config: AxiosRequestConfig) => {
 
 export const authApi = {
   register: async (payload: { email: string; password: string; name?: string }) => {
-    const response = await client.post<{ token: string; user: AuthUser }>('/auth/register', payload);
-    return response.data;
+    const response = await client.post<DataEnvelope<{ token: string; user: AuthUser }>>('/auth/register', payload);
+    return readAuthData(response);
   },
   login: async (payload: { email: string; password: string }) => {
-    const response = await client.post<{ token: string; user: AuthUser }>('/auth/login', payload);
-    return response.data;
+    const response = await client.post<DataEnvelope<{ token: string; user: AuthUser }>>('/auth/login', payload);
+    return readAuthData(response);
   },
   me: async () => {
-    const response = await client.get<{ user: AuthUser }>('/auth/me');
-    return response.data.user;
+    const response = await client.get<DataEnvelope<{ user: AuthUser }>>('/auth/me');
+    return readAuthData(response).user;
   },
   forgotPassword: async (email: string) => {
-    const response = await client.post<{ message: string }>('/auth/forgot-password', { email });
-    return response.data;
+    const response = await client.post<DataEnvelope<{ message: string }>>('/auth/forgot-password', { email });
+    return readAuthData(response);
   },
 };
 

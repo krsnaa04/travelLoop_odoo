@@ -8,14 +8,14 @@ import { useState } from 'react';
 import { z } from 'zod';
 import { authApi } from '../../../lib/api-client';
 import { useAuthStore } from '../../../lib/auth-store';
-import { dummyCredentials } from '../../../lib/mock-auth';
 
 const schema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
 
-const demoCredentials = {
+// Demo credentials for testing
+const DEMO_CREDENTIALS = {
   email: 'demo@traveloop.dev',
   password: 'DemoPass123!',
 };
@@ -33,11 +33,15 @@ export default function LoginPage() {
       setAuth(data.token, data.user);
       router.push('/dashboard');
     },
+    onError: () => {
+      setValidationError(null);
+    },
   });
 
   const forgotMutation = useMutation({
     mutationFn: authApi.forgotPassword,
     onSuccess: (data) => setPlaceholderMessage(data.message),
+    onError: () => setPlaceholderMessage('Failed to process forgot password request.'),
   });
 
   return (
@@ -68,14 +72,20 @@ export default function LoginPage() {
             className="traveloop-input"
             placeholder="Email address"
             value={form.email}
-            onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
+            onChange={(event) => {
+              setForm((current) => ({ ...current, email: event.target.value }));
+              if (validationError) setValidationError(null);
+            }}
           />
           <input
             className="traveloop-input"
             placeholder="Password"
             type="password"
             value={form.password}
-            onChange={(event) => setForm((current) => ({ ...current, password: event.target.value }))}
+            onChange={(event) => {
+              setForm((current) => ({ ...current, password: event.target.value }));
+              if (validationError) setValidationError(null);
+            }}
           />
           <button
             className="traveloop-button-primary w-full disabled:cursor-not-allowed disabled:opacity-70"
@@ -91,13 +101,13 @@ export default function LoginPage() {
           ) : null}
           <motion.div className="mt-5 rounded-[1.35rem] border border-teal-100 bg-teal-50/60 p-4" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 220, damping: 24 }}>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-700">Demo access</p>
-            <p className="mt-1 text-xs text-slate-700">Email: {demoCredentials.email}</p>
-            <p className="text-xs text-slate-700">Password: {demoCredentials.password}</p>
+            <p className="mt-1 text-xs text-slate-700">Email: {DEMO_CREDENTIALS.email}</p>
+            <p className="text-xs text-slate-700">Password: {DEMO_CREDENTIALS.password}</p>
             <button
               type="button"
               className="traveloop-pill mt-3 bg-white text-teal-700"
               onClick={() => {
-                setForm(demoCredentials);
+                setForm(DEMO_CREDENTIALS);
                 setValidationError(null);
               }}
             >
