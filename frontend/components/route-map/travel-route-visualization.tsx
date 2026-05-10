@@ -48,7 +48,7 @@ export function TravelRouteVisualization() {
             <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100">
               {selectedStop?.name}
             </span>
-            <span className="rounded-full border border-white/10 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200">
+            <span className="rounded-full border border-white/10 bg-slate-900/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-200">
               {travelStops.length} stops
             </span>
           </div>
@@ -57,7 +57,7 @@ export function TravelRouteVisualization() {
 
       <div className="relative z-10 grid gap-5 px-5 py-5 lg:grid-cols-[minmax(0,65fr)_minmax(0,35fr)] lg:items-start lg:px-6 xl:px-12">
         <div className="relative min-w-0 space-y-5">
-          <div className="rounded-[2rem] border border-white/8 bg-white/[0.03] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-4 xl:p-5">
+          <div className="rounded-[2rem] border border-white/8 bg-slate-900/[0.03] p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-4 xl:p-5">
             <FlightPathOverlay activeRouteId={activeRouteId} />
             <InteractiveGlobe
               selectedStopId={selectedStopId}
@@ -68,13 +68,13 @@ export function TravelRouteVisualization() {
           </div>
         </div>
 
-        <div className="hidden min-w-0 rounded-[2rem] border border-white/8 bg-white/[0.04] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_60px_rgba(2,6,23,0.28)] backdrop-blur-xl sm:p-5 lg:block lg:min-h-[44rem]">
+        <div className="hidden min-w-0 rounded-[2rem] border border-white/8 bg-slate-900/[0.04] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_60px_rgba(2,6,23,0.28)] backdrop-blur-xl sm:p-5 lg:block lg:min-h-[44rem]">
           <div className="flex items-center justify-between gap-3 border-b border-white/8 pb-4">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-teal-200">Route stops</p>
               <h3 className="mt-2 text-lg font-semibold text-white sm:text-xl">Vertical route cards</h3>
             </div>
-            <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-medium text-slate-200">
+            <span className="rounded-full border border-white/10 bg-slate-900/6 px-3 py-1 text-xs font-medium text-slate-200">
               Focused on {selectedStop?.country}
             </span>
           </div>
@@ -89,13 +89,13 @@ export function TravelRouteVisualization() {
           </div>
         </div>
 
-        <details className="group min-w-0 rounded-[2rem] border border-white/8 bg-white/[0.04] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_60px_rgba(2,6,23,0.28)] backdrop-blur-xl lg:hidden" open>
+        <details className="group min-w-0 rounded-[2rem] border border-white/8 bg-slate-900/[0.04] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_20px_60px_rgba(2,6,23,0.28)] backdrop-blur-xl lg:hidden" open>
           <summary className="flex list-none cursor-pointer items-center justify-between gap-3 border-b border-white/8 pb-4 [&::-webkit-details-marker]:hidden">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-teal-200">Route stops</p>
               <h3 className="mt-2 text-lg font-semibold text-white sm:text-xl">Collapsed route cards</h3>
             </div>
-            <span className="rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-medium text-slate-200 transition-transform duration-200 group-open:rotate-180">
+            <span className="rounded-full border border-white/10 bg-slate-900/6 px-3 py-1 text-xs font-medium text-slate-200 transition-transform duration-200 group-open:rotate-180">
               Toggle
             </span>
           </summary>

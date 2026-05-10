@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="traveloop-page">
       <section className="traveloop-shell traveloop-spotlight traveloop-fade-up mx-auto flex w-full max-w-6xl flex-col rounded-[2rem]">
-        <div className="traveloop-content border-b border-black/5 px-5 py-5 sm:px-8 sm:py-6">
+        <div className="traveloop-content border-b border-white/5 px-5 py-5 sm:px-8 sm:py-6">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-8">
             <div className="max-w-2xl space-y-1">
               <p className="traveloop-kicker">Traveloop</p>
@@ -52,7 +52,7 @@ export default function Home() {
                   href={href}
                   className="traveloop-card-soft group rounded-2xl p-4 transition"
                 >
-                  <p className="text-base font-semibold text-slate-900">{label}</p>
+                  <p className="text-base font-semibold text-slate-100">{label}</p>
                   <p className="mt-2 text-sm text-slate-500">Open the Traveloop screen</p>
                 </Link>
               ))}
@@ -66,7 +66,7 @@ export default function Home() {
               <li>Built-in city and activity discovery using internal catalog data.</li>
               <li>Hybrid budget view with transport, stay, meals, and activity costs.</li>
             </ul>
-            <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-white/10 p-4 text-sm text-slate-100 backdrop-blur-sm">
+            <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-slate-900/10 p-4 text-sm text-slate-100 backdrop-blur-sm">
               Includes public share links and one-click trip copy workflow.
             </div>
           </aside>

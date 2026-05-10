@@ -22,11 +22,11 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   }, [hydrated, router, token]);
 
   if (!hydrated) {
-    return <div className="p-6 text-sm text-slate-600">Preparing your workspace...</div>;
+    return <div className="p-6 text-sm text-slate-400">Preparing your workspace...</div>;
   }
 
   if (!token) {
-    return <div className="p-6 text-sm text-slate-600">Redirecting to login...</div>;
+    return <div className="p-6 text-sm text-slate-400">Redirecting to login...</div>;
   }
 
   return <>{children}</>;

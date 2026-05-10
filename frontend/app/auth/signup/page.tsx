@@ -121,7 +121,7 @@ export default function SignupPage() {
         </form>
           {validationError ? <p className="mt-4 text-sm text-rose-600">{validationError}</p> : null}
           {requestError ? <p className="mt-4 text-sm text-rose-600">{requestError}</p> : null}
-          <p className="mt-4 text-sm text-slate-600">
+          <p className="mt-4 text-sm text-slate-400">
             Already have an account?{' '}
             <Link href="/auth/login" className="font-medium text-teal-700">
               Sign in

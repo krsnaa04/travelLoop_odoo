@@ -34,12 +34,12 @@ export default function CommunityPage() {
           </motion.div>
         ) : null}
         {feedQuery.isError ? <p className="text-sm text-rose-600">Could not load public trips right now.</p> : null}
-        {items.length === 0 && !feedQuery.isLoading ? <p className="text-sm text-slate-600">No public trips yet.</p> : null}
+        {items.length === 0 && !feedQuery.isLoading ? <p className="text-sm text-slate-400">No public trips yet.</p> : null}
         <motion.div className="mt-4 grid gap-4" variants={stagger} initial="initial" animate="animate">
           {items.map((item) => (
             <MotionArticle key={item.slug} className="traveloop-card rounded-[1.5rem] p-5 sm:p-6" variants={itemMotion} whileHover={{ y: -4, scale: 1.01 }}>
               <p className="traveloop-kicker text-teal-700">Shared by {item.ownerName || 'Traveler'}</p>
-              <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">{item.trip.title}</h2>
+              <h2 className="mt-1 text-2xl font-semibold tracking-tight text-slate-100">{item.trip.title}</h2>
               <p className="traveloop-copy mt-2 text-sm">{item.trip.description || 'No description provided.'}</p>
               <p className="mt-2 text-xs text-slate-500">
                 {formatDate(item.trip.startDate)} - {formatDate(item.trip.endDate)} | {item.trip.destinationCount} stops

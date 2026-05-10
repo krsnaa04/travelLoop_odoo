@@ -178,32 +178,32 @@ export default function ItineraryBuilderPage() {
     <AuthGate>
       <AppShell title={trip ? `${trip.title} Builder` : 'Itinerary Builder'} subtitle="Add cities, schedule dates, attach activities, and reorder stops quickly.">
         <motion.div className="flex gap-2" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 220, damping: 24 }}>
-          <Link className="rounded-full border border-black/10 px-3 py-1 text-sm" href={`/trips/${tripId}`}>
+          <Link className="rounded-full border border-white/10 px-3 py-1 text-sm" href={`/trips/${tripId}`}>
             View itinerary
           </Link>
-          <Link className="rounded-full border border-black/10 px-3 py-1 text-sm" href={`/trips/${tripId}/budget`}>
+          <Link className="rounded-full border border-white/10 px-3 py-1 text-sm" href={`/trips/${tripId}/budget`}>
             Open budget
           </Link>
         </motion.div>
 
-        <MotionSection className="mt-6 rounded-2xl border border-black/8 bg-white p-5" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ type: 'spring', stiffness: 240, damping: 24 }}>
-          <h2 className="text-lg font-semibold text-slate-900">Add Stop</h2>
+        <MotionSection className="mt-6 rounded-2xl border border-white/8 bg-slate-900 p-5" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ type: 'spring', stiffness: 240, damping: 24 }}>
+          <h2 className="text-lg font-semibold text-slate-100">Add Stop</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <div className="md:col-span-2">
               <input
-                className="w-full rounded-xl border border-black/10 px-4 py-2"
+                className="w-full rounded-xl border border-white/10 px-4 py-2"
                 placeholder="Search city (Paris, Tokyo...)"
                 value={cityQuery}
                 onChange={(event) => setCityQuery(event.target.value)}
               />
               {citiesQuery.data && citiesQuery.data.length > 0 ? (
-                <div className="mt-2 max-h-40 space-y-1 overflow-auto rounded-xl border border-black/10 bg-white p-2">
+                <div className="mt-2 max-h-40 space-y-1 overflow-auto rounded-xl border border-white/10 bg-slate-900 p-2">
                   {citiesQuery.data.map((city) => (
                     <button
                       key={city.id}
                       type="button"
                       className={`block w-full rounded-lg px-3 py-2 text-left text-sm ${
-                        stopForm.cityId === city.id ? 'bg-teal-50 text-teal-700' : 'hover:bg-slate-50'
+                        stopForm.cityId === city.id ? 'bg-teal-50 text-teal-700' : 'hover:bg-slate-900/50'
                       }`}
                       onClick={() => setStopForm((current) => ({ ...current, cityId: city.id }))}
                     >
@@ -214,21 +214,21 @@ export default function ItineraryBuilderPage() {
               ) : null}
             </div>
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               type="date"
               title="Start date"
               value={stopForm.startDate}
               onChange={(event) => setStopForm((current) => ({ ...current, startDate: event.target.value }))}
             />
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               type="date"
               title="End date"
               value={stopForm.endDate}
               onChange={(event) => setStopForm((current) => ({ ...current, endDate: event.target.value }))}
             />
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               type="number"
               min={0}
               step="0.01"
@@ -238,7 +238,7 @@ export default function ItineraryBuilderPage() {
               onChange={(event) => setStopForm((current) => ({ ...current, transportCost: Number(event.target.value) }))}
             />
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               type="number"
               min={0}
               step="0.01"
@@ -248,7 +248,7 @@ export default function ItineraryBuilderPage() {
               onChange={(event) => setStopForm((current) => ({ ...current, stayCost: Number(event.target.value) }))}
             />
             <textarea
-              className="min-h-20 rounded-xl border border-black/10 px-4 py-2 md:col-span-2"
+              className="min-h-20 rounded-xl border border-white/10 px-4 py-2 md:col-span-2"
               placeholder="Optional stop notes"
               title="Optional stop notes"
               value={stopForm.notes}
@@ -265,11 +265,11 @@ export default function ItineraryBuilderPage() {
           </div>
         </MotionSection>
 
-        <MotionSection className="mt-6 rounded-2xl border border-black/8 bg-white p-5" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ type: 'spring', stiffness: 240, damping: 24 }}>
-          <h2 className="text-lg font-semibold text-slate-900">Add Activity</h2>
+        <MotionSection className="mt-6 rounded-2xl border border-white/8 bg-slate-900 p-5" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ type: 'spring', stiffness: 240, damping: 24 }}>
+          <h2 className="text-lg font-semibold text-slate-100">Add Activity</h2>
           <div className="mt-4 grid gap-3 md:grid-cols-2">
             <select
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               title="Select stop"
               value={activityForm.stopId}
               onChange={(event) => setActivityForm((current) => ({ ...current, stopId: event.target.value }))}
@@ -282,19 +282,19 @@ export default function ItineraryBuilderPage() {
               ))}
             </select>
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               placeholder="Search activity templates"
               title="Search activity templates"
               value={activitySearch}
               onChange={(event) => setActivitySearch(event.target.value)}
             />
             {activityCatalogQuery.data && activityCatalogQuery.data.length > 0 ? (
-              <div className="max-h-36 space-y-1 overflow-auto rounded-xl border border-black/10 bg-white p-2 md:col-span-2">
+              <div className="max-h-36 space-y-1 overflow-auto rounded-xl border border-white/10 bg-slate-900 p-2 md:col-span-2">
                 {activityCatalogQuery.data.map((item) => (
                   <button
                     key={item.id}
                     type="button"
-                    className="block w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-slate-50"
+                    className="block w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-slate-900/50"
                     onClick={() =>
                       setActivityForm((current) => ({
                         ...current,
@@ -312,21 +312,21 @@ export default function ItineraryBuilderPage() {
               </div>
             ) : null}
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               placeholder="Activity title"
               title="Activity title"
               value={activityForm.title}
               onChange={(event) => setActivityForm((current) => ({ ...current, title: event.target.value }))}
             />
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               placeholder="Category"
               title="Category"
               value={activityForm.category}
               onChange={(event) => setActivityForm((current) => ({ ...current, category: event.target.value }))}
             />
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               type="date"
               title="Activity scheduled date"
               value={activityForm.scheduledDate}
@@ -335,14 +335,14 @@ export default function ItineraryBuilderPage() {
               onChange={(event) => setActivityForm((current) => ({ ...current, scheduledDate: event.target.value }))}
             />
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               type="time"
               title="Activity scheduled time"
               value={activityForm.scheduledTime}
               onChange={(event) => setActivityForm((current) => ({ ...current, scheduledTime: event.target.value }))}
             />
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               type="number"
               min={1}
               placeholder="Duration (minutes)"
@@ -351,7 +351,7 @@ export default function ItineraryBuilderPage() {
               onChange={(event) => setActivityForm((current) => ({ ...current, durationMinutes: Number(event.target.value) }))}
             />
             <input
-              className="rounded-xl border border-black/10 px-4 py-2"
+              className="rounded-xl border border-white/10 px-4 py-2"
               type="number"
               min={0}
               step="0.01"
@@ -361,7 +361,7 @@ export default function ItineraryBuilderPage() {
               onChange={(event) => setActivityForm((current) => ({ ...current, estimatedCost: Number(event.target.value) }))}
             />
             <textarea
-              className="min-h-20 rounded-xl border border-black/10 px-4 py-2 md:col-span-2"
+              className="min-h-20 rounded-xl border border-white/10 px-4 py-2 md:col-span-2"
               placeholder="Description"
               title="Description"
               value={activityForm.description}
@@ -378,12 +378,12 @@ export default function ItineraryBuilderPage() {
           </div>
         </MotionSection>
 
-        <MotionSection className="mt-6 rounded-2xl border border-black/8 bg-white p-5" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ type: 'spring', stiffness: 240, damping: 24 }}>
-          <h2 className="text-lg font-semibold text-slate-900">Stops & Activities</h2>
+        <MotionSection className="mt-6 rounded-2xl border border-white/8 bg-slate-900 p-5" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ type: 'spring', stiffness: 240, damping: 24 }}>
+          <h2 className="text-lg font-semibold text-slate-100">Stops & Activities</h2>
           {stopsQuery.isLoading ? (
             <motion.div className="mt-4 grid gap-4" variants={stagger} initial="initial" animate="animate">
               {Array.from({ length: 3 }).map((_, index) => (
-                <MotionArticle key={index} className="rounded-xl border border-black/8 p-4" variants={itemMotion}>
+                <MotionArticle key={index} className="rounded-xl border border-white/8 p-4" variants={itemMotion}>
                   <SkeletonBlock className="h-4 w-24" />
                   <SkeletonBlock className="mt-3 h-6 w-2/3" />
                   <SkeletonBlock className="mt-2 h-4 w-1/2" />
@@ -393,32 +393,32 @@ export default function ItineraryBuilderPage() {
             </motion.div>
           ) : null}
           {stops.length === 0 && !stopsQuery.isLoading ? (
-            <p className="mt-3 text-sm text-slate-600">No stops yet. Add your first city stop above.</p>
+            <p className="mt-3 text-sm text-slate-400">No stops yet. Add your first city stop above.</p>
           ) : null}
           <motion.div className="mt-4 grid gap-4" variants={stagger} initial="initial" animate="animate">
             {stops.map((stop) => {
               const activities = activitiesByStop.get(stop.id) ?? [];
               return (
-                <MotionArticle key={stop.id} className="rounded-xl border border-black/8 p-4" variants={itemMotion} whileHover={{ y: -3, scale: 1.005 }}>
+                <MotionArticle key={stop.id} className="rounded-xl border border-white/8 p-4" variants={itemMotion} whileHover={{ y: -3, scale: 1.005 }}>
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-700">Stop {stop.stopOrder}</p>
-                      <h3 className="mt-1 text-lg font-semibold text-slate-900">
+                      <h3 className="mt-1 text-lg font-semibold text-slate-100">
                         {stop.cityName}, {stop.country}
                       </h3>
-                      <p className="text-sm text-slate-600">
+                      <p className="text-sm text-slate-400">
                         {formatDate(stop.startDate)} - {formatDate(stop.endDate)}
                       </p>
-                      <p className="mt-1 text-sm text-slate-700">
+                      <p className="mt-1 text-sm text-slate-300">
                         Transport {formatCurrency(stop.transportCost, trip?.currencyCode ?? 'USD')} | Stay{' '}
                         {formatCurrency(stop.stayCost, trip?.currencyCode ?? 'USD')}
                       </p>
                     </div>
                     <div className="flex gap-2">
-                      <button className="rounded-full border border-black/10 px-3 py-1 text-xs" type="button" onClick={() => moveStop(stop.id, -1)}>
+                      <button className="rounded-full border border-white/10 px-3 py-1 text-xs" type="button" onClick={() => moveStop(stop.id, -1)}>
                         Move up
                       </button>
-                      <button className="rounded-full border border-black/10 px-3 py-1 text-xs" type="button" onClick={() => moveStop(stop.id, 1)}>
+                      <button className="rounded-full border border-white/10 px-3 py-1 text-xs" type="button" onClick={() => moveStop(stop.id, 1)}>
                         Move down
                       </button>
                       <button
@@ -430,14 +430,14 @@ export default function ItineraryBuilderPage() {
                       </button>
                     </div>
                   </div>
-                  <div className="mt-3 rounded-xl bg-slate-50 p-3">
-                    <p className="text-sm font-medium text-slate-700">Activities</p>
+                  <div className="mt-3 rounded-xl bg-slate-900/50 p-3">
+                    <p className="text-sm font-medium text-slate-300">Activities</p>
                     {activities.length === 0 ? <p className="mt-1 text-sm text-slate-500">No activities for this stop yet.</p> : null}
                     <div className="mt-2 space-y-2">
                       {activities.map((activity) => (
-                        <div key={activity.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-white p-2">
+                        <div key={activity.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg bg-slate-900 p-2">
                           <div>
-                            <p className="text-sm font-medium text-slate-900">
+                            <p className="text-sm font-medium text-slate-100">
                               {activity.title} <span className="text-slate-500">({activity.category})</span>
                             </p>
                             <p className="text-xs text-slate-500">
@@ -445,7 +445,7 @@ export default function ItineraryBuilderPage() {
                             </p>
                           </div>
                           <div className="flex items-center gap-2">
-                            <span className="text-sm text-slate-700">
+                            <span className="text-sm text-slate-300">
                               {formatCurrency(activity.estimatedCost, trip?.currencyCode ?? 'USD')}
                             </span>
                             <button

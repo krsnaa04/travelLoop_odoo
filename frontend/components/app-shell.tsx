@@ -35,11 +35,11 @@ export function AppShell({ title, subtitle, children }: { title: string; subtitl
     <main className="traveloop-page mx-auto w-full max-w-[1600px]">
       <section className="traveloop-shell traveloop-spotlight rounded-[2rem]">
         <div className="traveloop-content p-5 sm:p-6 lg:p-8">
-          <header className="flex flex-col gap-5 border-b border-black/5 pb-5 md:flex-row md:items-end md:justify-between">
+          <header className="flex flex-col gap-5 border-b border-white/5 pb-5 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl space-y-1">
               <div className="flex items-center gap-3">
                 <p className="traveloop-kicker">Traveloop</p>
-                <span className="hidden rounded-full border border-black/8 bg-white/70 px-3 py-1 text-xs font-semibold text-slate-500 sm:inline-flex">
+                <span className="hidden rounded-full border border-white/8 bg-slate-900/70 px-3 py-1 text-xs font-semibold text-slate-500 sm:inline-flex">
                   {activeLabel}
                 </span>
               </div>

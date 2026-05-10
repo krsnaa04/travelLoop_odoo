@@ -49,7 +49,7 @@ export default function CreateTripPage() {
     <AuthGate>
       <AppShell title="Create Trip" subtitle="Start with trip basics, then move to stop-by-stop planning.">
         <MotionSection
-          className="rounded-[1.75rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] backdrop-blur-sm"
+          className="rounded-[1.75rem] border border-white/8 bg-slate-900/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] backdrop-blur-sm"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 220, damping: 24 }}

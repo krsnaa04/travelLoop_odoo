@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String    @id @default(uuid())
+  name           String
+  email          String    @unique
+  passwordHash   String
+  avatar         String?
+  role           String    @default("user") // user, admin, moderator
+  status         String    @default("active") // active, suspended, banned
+  totalTrips     Int       @default(0)
+  lastActive     DateTime  @default(now())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  trips          Trip[]
+  posts          CommunityPost[]
+  comments       Comment[]
+}
+
+model Trip {
+  id           String    @id @default(uuid())
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title        String
+  budget       Float     @default(0)
+  duration     Int       @default(1)
+  visibility   String    @default("private") // private, public
+  likes        Int       @default(0)
+  isFeatured   Boolean   @default(false)
+  isTrending   Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  destinations Destination[]
+  activities   Activity[]
+}
+
+model Destination {
+  id        String   @id @default(uuid())
+  tripId    String
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  name      String
+  country   String
+  createdAt DateTime @default(now())
+}
+
+model Activity {
+  id        String   @id @default(uuid())
+  tripId    String
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  title     String
+  category  String
+  cost      Float    @default(0)
+  createdAt DateTime @default(now())
+}
+
+model CommunityPost {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content   String
+  status    String    @default("approved") // approved, pending, rejected, flagged
+  likes     Int       @default(0)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  comments  Comment[]
+  reports   Report[]
+}
+
+model Comment {
+  id        String        @id @default(uuid())
+  postId    String
+  post      CommunityPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content   String
+  createdAt DateTime      @default(now())
+  
+  reports   Report[]
+}
+
+model Report {
+  id        String         @id @default(uuid())
+  type      String         // post, comment
+  reason    String
+  status    String         @default("pending") // pending, resolved, dismissed
+  
+  postId    String?
+  post      CommunityPost? @relation(fields: [postId], references: [id], onDelete: Cascade)
+  
+  commentId String?
+  comment   Comment?       @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime       @default(now())
+}
+
+model Analytics {
+  id               String   @id @default(uuid())
+  date             DateTime @default(now())
+  totalUsers       Int      @default(0)
+  activeUsers      Int      @default(0)
+  tripsCreated     Int      @default(0)
+  tripsCompleted   Int      @default(0)
+  totalDestinations Int     @default(0)
+}

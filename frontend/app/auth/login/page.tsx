@@ -114,11 +114,11 @@ export default function LoginPage() {
           {requestError ? <p className="mt-4 text-sm text-rose-600">{requestError}</p> : null}
           <motion.div className="mt-5 rounded-[1.35rem] border border-teal-100 bg-teal-50/60 p-4" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 220, damping: 24 }}>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-700">Demo access</p>
-            <p className="mt-1 text-xs text-slate-700">Email: {DEMO_CREDENTIALS.email}</p>
-            <p className="text-xs text-slate-700">Password: {DEMO_CREDENTIALS.password}</p>
+            <p className="mt-1 text-xs text-slate-300">Email: {DEMO_CREDENTIALS.email}</p>
+            <p className="text-xs text-slate-300">Password: {DEMO_CREDENTIALS.password}</p>
             <button
               type="button"
-              className="traveloop-pill mt-3 bg-white text-teal-700"
+              className="traveloop-pill mt-3 bg-slate-900 text-teal-700"
               onClick={() => {
                 setForm(DEMO_CREDENTIALS);
                 setValidationError(null);
@@ -140,8 +140,8 @@ export default function LoginPage() {
           >
             Forgot Password
           </button>
-          {placeholderMessage ? <p className="mt-2 text-xs text-slate-600">{placeholderMessage}</p> : null}
-          <p className="mt-4 text-sm text-slate-600">
+          {placeholderMessage ? <p className="mt-2 text-xs text-slate-400">{placeholderMessage}</p> : null}
+          <p className="mt-4 text-sm text-slate-400">
             New here?{' '}
             <Link href="/auth/signup" className="font-medium text-teal-700">
               Create an account

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 export function SkeletonBlock({ className = '' }: { className?: string }) {
   return (
     <motion.div
-      className={`overflow-hidden rounded-2xl bg-white/65 ${className}`}
+      className={`overflow-hidden rounded-2xl bg-slate-900/65 ${className}`}
       initial={{ opacity: 0.55 }}
       animate={{ opacity: [0.55, 0.9, 0.55] }}
       transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}

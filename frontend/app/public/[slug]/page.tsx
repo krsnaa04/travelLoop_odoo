@@ -50,9 +50,9 @@ export default function PublicTripPage() {
         {data ? (
           <>
             <MotionSection className="mt-3" initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ type: 'spring', stiffness: 240, damping: 24 }}>
-              <h1 className="text-3xl font-semibold text-slate-900">{data.trip.title}</h1>
-              <p className="mt-2 text-sm text-slate-600">Shared by {data.ownerName || 'Traveler'}</p>
-              <p className="mt-2 text-sm text-slate-600">{data.trip.description || 'No description.'}</p>
+              <h1 className="text-3xl font-semibold text-slate-100">{data.trip.title}</h1>
+              <p className="mt-2 text-sm text-slate-400">Shared by {data.ownerName || 'Traveler'}</p>
+              <p className="mt-2 text-sm text-slate-400">{data.trip.description || 'No description.'}</p>
               <p className="mt-2 text-xs text-slate-500">
                 {formatDate(data.trip.startDate)} - {formatDate(data.trip.endDate)} | {data.stops.length} stops
               </p>
@@ -71,7 +71,7 @@ export default function PublicTripPage() {
                 >
                   {copyMutation.isPending ? 'Copying...' : 'Copy Trip'}
                 </button>
-                <Link className="rounded-full border border-black/10 px-4 py-2 text-sm" href="/community">
+                <Link className="rounded-full border border-white/10 px-4 py-2 text-sm" href="/community">
                   Back to community
                 </Link>
               </motion.div>
@@ -81,14 +81,14 @@ export default function PublicTripPage() {
               {data.stops.map((stop) => {
                 const activities = data.activities.filter((activity) => activity.stopId === stop.id);
                 return (
-                  <MotionArticle key={stop.id} className="rounded-xl border border-black/8 bg-white p-4" variants={itemMotion} whileHover={{ y: -3, scale: 1.005 }}>
-                    <h2 className="text-lg font-semibold text-slate-900">
+                  <MotionArticle key={stop.id} className="rounded-xl border border-white/8 bg-slate-900 p-4" variants={itemMotion} whileHover={{ y: -3, scale: 1.005 }}>
+                    <h2 className="text-lg font-semibold text-slate-100">
                       Stop {stop.stopOrder}: {stop.cityName}, {stop.country}
                     </h2>
-                    <p className="text-sm text-slate-600">
+                    <p className="text-sm text-slate-400">
                       {formatDate(stop.startDate)} - {formatDate(stop.endDate)}
                     </p>
-                    <p className="mt-2 text-sm text-slate-700">
+                    <p className="mt-2 text-sm text-slate-300">
                       Transport {formatCurrency(stop.transportCost, data.trip.currencyCode)} | Stay{' '}
                       {formatCurrency(stop.stayCost, data.trip.currencyCode)}
                     </p>
@@ -97,11 +97,11 @@ export default function PublicTripPage() {
                         <p className="text-sm text-slate-500">No activities listed.</p>
                       ) : (
                         activities.map((activity) => (
-                          <div key={activity.id} className="rounded-lg bg-slate-50 p-2">
-                            <p className="text-sm font-medium text-slate-900">
+                          <div key={activity.id} className="rounded-lg bg-slate-900/50 p-2">
+                            <p className="text-sm font-medium text-slate-100">
                               {activity.title} ({activity.category})
                             </p>
-                            <p className="text-xs text-slate-600">
+                            <p className="text-xs text-slate-400">
                               {formatDate(activity.scheduledDate)} {activity.scheduledTime ? `at ${activity.scheduledTime}` : ''} |{' '}
                               {formatCurrency(activity.estimatedCost, data.trip.currencyCode)}
                             </p>

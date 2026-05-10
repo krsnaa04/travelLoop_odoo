@@ -34,7 +34,7 @@ export function AnimatedModal({
             onClick={(event) => event.stopPropagation()}
           >
             <div className="traveloop-content flex max-h-[calc(100vh-2rem)] flex-col p-5 sm:p-6">
-              <div className="flex items-start justify-between gap-3 border-b border-black/5 pb-4">
+              <div className="flex items-start justify-between gap-3 border-b border-white/5 pb-4">
                 <div>
                   <p className="traveloop-kicker">Modal</p>
                   <h2 className="traveloop-title mt-2 text-2xl font-semibold sm:text-[2rem]">{title}</h2>

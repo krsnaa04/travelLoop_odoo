@@ -161,18 +161,18 @@ export function AiTripPlannerModal() {
 
             <div className="traveloop-card rounded-[1.35rem] p-4 sm:p-5">
               <p className="traveloop-kicker text-teal-700">Planner intelligence</p>
-              <div className="mt-3 grid gap-3 text-sm text-slate-700 sm:grid-cols-3">
-                <div className="rounded-2xl bg-white/70 p-3 shadow-sm">
+              <div className="mt-3 grid gap-3 text-sm text-slate-300 sm:grid-cols-3">
+                <div className="rounded-2xl bg-slate-900/70 p-3 shadow-sm">
                   <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Tone</p>
-                  <p className="mt-2 font-semibold text-slate-900 leading-5">{preview.template.vibe}</p>
+                  <p className="mt-2 font-semibold text-slate-100 leading-5">{preview.template.vibe}</p>
                 </div>
-                <div className="rounded-2xl bg-white/70 p-3 shadow-sm">
+                <div className="rounded-2xl bg-slate-900/70 p-3 shadow-sm">
                   <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Transit</p>
-                  <p className="mt-2 font-semibold text-slate-900 leading-5">{preview.template.transit}</p>
+                  <p className="mt-2 font-semibold text-slate-100 leading-5">{preview.template.transit}</p>
                 </div>
-                <div className="rounded-2xl bg-white/70 p-3 shadow-sm">
+                <div className="rounded-2xl bg-slate-900/70 p-3 shadow-sm">
                   <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Daily</p>
-                  <p className="mt-2 font-semibold text-slate-900 leading-5">${preview.budgetPerDay.toLocaleString()}</p>
+                  <p className="mt-2 font-semibold text-slate-100 leading-5">${preview.budgetPerDay.toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -193,12 +193,12 @@ export function AiTripPlannerModal() {
 
               <div className="mt-5 grid gap-2 sm:grid-cols-2">
                 {preview.allocation.map((item) => (
-                  <div key={item.label} className="rounded-2xl border border-white/10 bg-white/10 p-3 backdrop-blur-sm">
+                  <div key={item.label} className="rounded-2xl border border-white/10 bg-slate-900/10 p-3 backdrop-blur-sm">
                     <div className="flex items-center justify-between gap-3 text-sm">
                       <span className="font-medium text-white">{item.label}</span>
                       <span className="text-slate-100">${item.value.toLocaleString()}</span>
                     </div>
-                    <div className="mt-3 h-2 rounded-full bg-white/10">
+                    <div className="mt-3 h-2 rounded-full bg-slate-900/10">
                       <div className={`h-2 rounded-full ${item.tone} ${widthClass(item.value, preview.budget)}`} />
                     </div>
                   </div>
@@ -219,19 +219,19 @@ export function AiTripPlannerModal() {
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <p className="traveloop-kicker text-teal-700">{day.label}</p>
-                      <h4 className="mt-1 text-lg font-semibold text-slate-900 sm:text-xl">{day.theme}</h4>
+                      <h4 className="mt-1 text-lg font-semibold text-slate-100 sm:text-xl">{day.theme}</h4>
                     </div>
                     <span className="traveloop-pill w-fit bg-teal-50 text-teal-800">${Math.round(preview.budget / preview.days).toLocaleString()}</span>
                   </div>
-                  <div className="mt-3 space-y-3 text-sm leading-6 text-slate-700">
+                  <div className="mt-3 space-y-3 text-sm leading-6 text-slate-300">
                     <p>
-                      <span className="font-semibold text-slate-900">Morning:</span> {day.morning}
+                      <span className="font-semibold text-slate-100">Morning:</span> {day.morning}
                     </p>
                     <p>
-                      <span className="font-semibold text-slate-900">Afternoon:</span> {day.afternoon}
+                      <span className="font-semibold text-slate-100">Afternoon:</span> {day.afternoon}
                     </p>
                     <p>
-                      <span className="font-semibold text-slate-900">Evening:</span> {day.evening}
+                      <span className="font-semibold text-slate-100">Evening:</span> {day.evening}
                     </p>
                   </div>
                 </motion.article>

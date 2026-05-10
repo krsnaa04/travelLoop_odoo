@@ -60,7 +60,7 @@ function DestinationPin({ destination, index }: { destination: (typeof destinati
       <div className="relative flex h-5 w-5 items-center justify-center">
         <span className="absolute inset-0 rounded-full bg-cyan-300/70 blur-md" />
         <span className="absolute inset-0 animate-ping rounded-full bg-cyan-200/40" />
-        <span className="relative h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_20px_rgba(255,255,255,0.9)]" />
+        <span className="relative h-2.5 w-2.5 rounded-full bg-slate-900 shadow-[0_0_20px_rgba(255,255,255,0.9)]" />
       </div>
     </motion.div>
   );
@@ -80,7 +80,7 @@ export function WorldMapSection() {
           </div>
           <div className="flex flex-wrap gap-2">
             {['Smart routing', 'Budget-aware', 'Premium preview'].map((pill) => (
-              <span key={pill} className="traveloop-pill bg-white/75 text-slate-700">
+              <span key={pill} className="traveloop-pill bg-slate-900/75 text-slate-300">
                 {pill}
               </span>
             ))}
@@ -157,7 +157,7 @@ export function WorldMapSection() {
               {destinations.slice(0, 3).map((destination, index) => (
                 <motion.div
                   key={destination.name}
-                  className="rounded-2xl border border-white/10 bg-white/10 p-3 text-white backdrop-blur-md"
+                  className="rounded-2xl border border-white/10 bg-slate-900/10 p-3 text-white backdrop-blur-md"
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
@@ -184,7 +184,7 @@ export function WorldMapSection() {
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="traveloop-kicker text-teal-700">Route stop</p>
-                    <h3 className="mt-1 text-lg font-semibold text-slate-900 sm:text-xl">{destination.name}</h3>
+                    <h3 className="mt-1 text-lg font-semibold text-slate-100 sm:text-xl">{destination.name}</h3>
                   </div>
                   <span className="traveloop-pill bg-teal-50 text-teal-800">{destination.country}</span>
                 </div>

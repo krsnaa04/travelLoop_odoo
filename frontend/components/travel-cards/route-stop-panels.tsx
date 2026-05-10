@@ -54,10 +54,10 @@ function RouteStopCard({
       onMouseLeave={() => onHoverStop(null)}
       className={`group w-full rounded-[1.5rem] border p-4 text-left backdrop-blur-xl transition-all duration-300 ${
         active
-          ? 'border-cyan-300/40 bg-white/12 shadow-[0_0_0_1px_rgba(103,232,249,0.18),0_18px_60px_rgba(8,145,178,0.25)]'
+          ? 'border-cyan-300/40 bg-slate-900/12 shadow-[0_0_0_1px_rgba(103,232,249,0.18),0_18px_60px_rgba(8,145,178,0.25)]'
           : hovered
-            ? 'border-white/20 bg-white/10 shadow-[0_18px_40px_rgba(8,15,40,0.35)]'
-            : 'border-white/10 bg-white/7 shadow-[0_14px_40px_rgba(2,6,23,0.22)]'
+            ? 'border-white/20 bg-slate-900/10 shadow-[0_18px_40px_rgba(8,15,40,0.35)]'
+            : 'border-white/10 bg-slate-900/7 shadow-[0_14px_40px_rgba(2,6,23,0.22)]'
       }`}
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -72,12 +72,12 @@ function RouteStopCard({
         <div className="min-w-0 flex-1 overflow-hidden">
           <div className="flex items-center justify-between gap-2">
             <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-teal-200">Route Stop</span>
-            <span className={`shrink-0 rounded-full border px-3 py-1 text-xs font-semibold ${active ? 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100' : 'border-white/10 bg-white/5 text-slate-200'}`}>
+            <span className={`shrink-0 rounded-full border px-3 py-1 text-xs font-semibold ${active ? 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100' : 'border-white/10 bg-slate-900/5 text-slate-200'}`}>
               {stop.country}
             </span>
           </div>
           <div className="mt-2 flex items-start gap-3">
-            <div className={`flex h-9 w-9 items-center justify-center rounded-full border text-xs font-bold ${active ? 'border-cyan-300/40 bg-cyan-300/15 text-cyan-100' : 'border-white/10 bg-white/5 text-slate-200'}`}>
+            <div className={`flex h-9 w-9 items-center justify-center rounded-full border text-xs font-bold ${active ? 'border-cyan-300/40 bg-cyan-300/15 text-cyan-100' : 'border-white/10 bg-slate-900/5 text-slate-200'}`}>
               {stop.number}
             </div>
             <div className="min-w-0">
@@ -118,8 +118,8 @@ export function BottomRouteNavigation({
               active
                 ? 'border-cyan-300/40 bg-cyan-300/12 shadow-[0_0_0_1px_rgba(103,232,249,0.15),0_18px_60px_rgba(8,145,178,0.25)]'
                 : hovered
-                  ? 'border-white/20 bg-white/10 shadow-[0_16px_40px_rgba(8,15,40,0.34)]'
-                  : 'border-white/10 bg-white/7 shadow-[0_10px_30px_rgba(2,6,23,0.18)]'
+                  ? 'border-white/20 bg-slate-900/10 shadow-[0_16px_40px_rgba(8,15,40,0.34)]'
+                  : 'border-white/10 bg-slate-900/7 shadow-[0_10px_30px_rgba(2,6,23,0.18)]'
             }`}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}

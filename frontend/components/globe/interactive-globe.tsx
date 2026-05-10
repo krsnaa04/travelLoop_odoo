@@ -96,11 +96,11 @@ function StopMarker({
         <div
           className={`pointer-events-none flex max-w-[9rem] items-center gap-2 overflow-hidden rounded-full border px-3 py-1.5 text-[10px] font-semibold tracking-[0.18em] uppercase shadow-[0_0_28px_rgba(103,232,249,0.35)] backdrop-blur-md transition-all sm:max-w-[11rem] sm:text-[11px] ${
             active || hovered
-              ? 'border-white/20 bg-white/15 text-white opacity-100'
+              ? 'border-white/20 bg-slate-900/15 text-white opacity-100'
               : 'border-white/10 bg-black/20 text-slate-200 opacity-90'
           }`}
         >
-          <span className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${active ? 'bg-cyan-300 text-slate-950' : 'bg-white/10 text-white'}`}>
+          <span className={`flex h-5 w-5 items-center justify-center rounded-full text-[10px] ${active ? 'bg-cyan-300 text-slate-950' : 'bg-slate-900/10 text-white'}`}>
             {stop.number}
           </span>
           <span className="min-w-0 truncate">{stop.name}</span>

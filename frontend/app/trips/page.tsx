@@ -70,7 +70,7 @@ export default function TripsPage() {
                   <p className="text-sm font-medium text-slate-500">
                     {formatDate(trip.startDate)} - {formatDate(trip.endDate)}
                   </p>
-                  <h2 className="text-2xl font-semibold tracking-tight text-slate-900 sm:text-[1.75rem]">{trip.title}</h2>
+                  <h2 className="text-2xl font-semibold tracking-tight text-slate-100 sm:text-[1.75rem]">{trip.title}</h2>
                   <p className="traveloop-copy text-sm sm:max-w-2xl">{trip.description || 'No description yet.'}</p>
                   <p className="mt-2 text-xs text-slate-500">
                     {trip.destinationCount} stops | Budget {formatCurrency(trip.budget, trip.currencyCode)}
