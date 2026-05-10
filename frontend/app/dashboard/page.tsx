@@ -8,6 +8,7 @@ import { AuthGate } from '../../components/auth-gate';
 import { MotionArticle, MotionSection, itemMotion, stagger } from '../../components/motion';
 import { SkeletonBlock } from '../../components/loading-skeleton';
 import { TravelRouteVisualization } from '../../components/route-map/travel-route-visualization';
+import { EmptyState } from '../../components/empty-state';
 import { tripApi } from '../../lib/api-client';
 import { formatCurrency, formatDate } from '../../lib/format';
 
@@ -18,6 +19,7 @@ export default function DashboardPage() {
   });
 
   const trips = tripsQuery.data ?? [];
+  const isEmpty = !tripsQuery.isLoading && !tripsQuery.isError && trips.length === 0;
   const nextTrip = [...trips]
     .filter((trip) => trip.startDate)
     .sort((a, b) => (a.startDate ?? '').localeCompare(b.startDate ?? ''))[0];
@@ -68,7 +70,18 @@ export default function DashboardPage() {
           </div>
         </motion.div>
 
-        <TravelRouteVisualization />
+        {isEmpty ? (
+          <div className="mt-6">
+            <EmptyState
+              title="No trips yet"
+              description="Start planning your first adventure. Your trips, itineraries, journals, budgets, and packing lists will stay private to your account."
+              ctaLabel="Create Trip"
+              ctaHref="/trips/new"
+            />
+          </div>
+        ) : (
+          <TravelRouteVisualization />
+        )}
 
         <MotionSection
           className="mt-6 rounded-[1.75rem] border border-black/8 bg-white/80 p-5 shadow-[0_12px_30px_rgba(15,23,42,0.05)] backdrop-blur-sm"
@@ -102,8 +115,8 @@ export default function DashboardPage() {
             </motion.div>
           ) : null}
           {tripsQuery.isError ? <p className="mt-5 text-sm text-rose-600">Could not load trips right now.</p> : null}
-          {trips.length === 0 && !tripsQuery.isLoading ? (
-            <p className="mt-5 text-sm text-slate-500">No trips yet. Start by creating your first itinerary.</p>
+          {isEmpty ? (
+            <p className="mt-5 text-sm text-slate-500">Your dashboard is waiting for your first private trip.</p>
           ) : null}
           <div className="mt-5 grid gap-4 md:grid-cols-2">
             {trips.slice(0, 4).map((trip) => (

@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS share_links (
 CREATE TABLE IF NOT EXISTS packing_items (
   id UUID PRIMARY KEY,
   itinerary_id UUID NOT NULL REFERENCES itineraries(id) ON DELETE CASCADE,
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   title TEXT NOT NULL,
   category TEXT,
   is_packed BOOLEAN NOT NULL DEFAULT FALSE,
@@ -80,6 +81,7 @@ CREATE TABLE IF NOT EXISTS packing_items (
 CREATE TABLE IF NOT EXISTS trip_notes (
   id UUID PRIMARY KEY,
   itinerary_id UUID NOT NULL REFERENCES itineraries(id) ON DELETE CASCADE,
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   trip_stop_id UUID REFERENCES trip_stops(id) ON DELETE SET NULL,
   body TEXT NOT NULL,
   noted_on DATE NOT NULL DEFAULT CURRENT_DATE,
@@ -90,6 +92,8 @@ CREATE TABLE IF NOT EXISTS trip_notes (
 CREATE INDEX IF NOT EXISTS idx_itineraries_user_id ON itineraries(user_id);
 CREATE INDEX IF NOT EXISTS idx_trip_stops_itinerary_id ON trip_stops(itinerary_id);
 CREATE INDEX IF NOT EXISTS idx_trip_activities_stop_id ON trip_activities(stop_id);
+CREATE INDEX IF NOT EXISTS idx_packing_items_user_id ON packing_items(user_id);
+CREATE INDEX IF NOT EXISTS idx_trip_notes_user_id ON trip_notes(user_id);
 CREATE INDEX IF NOT EXISTS idx_activity_catalog_city_id ON activity_catalog(city_id);
 CREATE INDEX IF NOT EXISTS idx_share_links_slug ON share_links(slug);
 

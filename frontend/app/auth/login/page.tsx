@@ -1,6 +1,7 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -11,13 +12,13 @@ import { useAuthStore } from '../../../lib/auth-store';
 
 const schema = z.object({
   email: z.string().email(),
-  password: z.string().min(8),
+  password: z.string().min(6),
 });
 
 // Demo credentials for testing
 const DEMO_CREDENTIALS = {
-  email: 'demo@traveloop.dev',
-  password: 'DemoPass123!',
+  email: 'demo@traveloop.com',
+  password: 'demo123',
 };
 
 export default function LoginPage() {
@@ -26,15 +27,28 @@ export default function LoginPage() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [validationError, setValidationError] = useState<string | null>(null);
   const [placeholderMessage, setPlaceholderMessage] = useState<string | null>(null);
+  const [requestError, setRequestError] = useState<string | null>(null);
+
+  const readRequestError = (error: unknown) => {
+    if (axios.isAxiosError(error)) {
+      const message = error.response?.data?.message;
+      if (typeof message === 'string' && message.length > 0) {
+        return message;
+      }
+    }
+    return 'Login failed. Please check your credentials and try again.';
+  };
 
   const loginMutation = useMutation({
     mutationFn: authApi.login,
     onSuccess: (data) => {
+      setRequestError(null);
       setAuth(data.token, data.user);
       router.push('/dashboard');
     },
-    onError: () => {
+    onError: (error) => {
       setValidationError(null);
+      setRequestError(readRequestError(error));
     },
   });
 
@@ -61,10 +75,11 @@ export default function LoginPage() {
             event.preventDefault();
             const parsed = schema.safeParse(form);
             if (!parsed.success) {
-              setValidationError('Please provide a valid email and password (8+ characters).');
+              setValidationError('Please provide a valid email and password (6+ characters).');
               return;
             }
             setValidationError(null);
+            setRequestError(null);
             loginMutation.mutate(parsed.data);
           }}
         >
@@ -96,9 +111,7 @@ export default function LoginPage() {
           </button>
         </form>
           {validationError ? <p className="mt-4 text-sm text-rose-600">{validationError}</p> : null}
-          {loginMutation.isError ? (
-            <p className="mt-4 text-sm text-rose-600">Login failed. Please check your credentials and try again.</p>
-          ) : null}
+          {requestError ? <p className="mt-4 text-sm text-rose-600">{requestError}</p> : null}
           <motion.div className="mt-5 rounded-[1.35rem] border border-teal-100 bg-teal-50/60 p-4" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ type: 'spring', stiffness: 220, damping: 24 }}>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-700">Demo access</p>
             <p className="mt-1 text-xs text-slate-700">Email: {DEMO_CREDENTIALS.email}</p>

@@ -7,6 +7,7 @@ import { AppShell } from '../../components/app-shell';
 import { AuthGate } from '../../components/auth-gate';
 import { MotionArticle, itemMotion, stagger } from '../../components/motion';
 import { SkeletonBlock } from '../../components/loading-skeleton';
+import { EmptyState } from '../../components/empty-state';
 import { tripApi } from '../../lib/api-client';
 import { formatCurrency, formatDate } from '../../lib/format';
 
@@ -25,6 +26,7 @@ export default function TripsPage() {
   });
 
   const trips = tripsQuery.data ?? [];
+  const isEmpty = !tripsQuery.isLoading && !tripsQuery.isError && trips.length === 0;
 
   return (
     <AuthGate>
@@ -50,10 +52,15 @@ export default function TripsPage() {
           </motion.div>
         ) : null}
         {tripsQuery.isError ? <p className="mt-6 text-sm text-rose-600">Could not load trips.</p> : null}
-        {trips.length === 0 && !tripsQuery.isLoading ? (
-          <article className="traveloop-card mt-6 rounded-[1.5rem] p-5 sm:p-6">
-            <p className="text-sm text-slate-600">No trips found. Create one to begin building your itinerary.</p>
-          </article>
+        {isEmpty ? (
+          <div className="mt-6">
+            <EmptyState
+              title="No trips yet"
+              description="Start planning your first adventure. This account is private and empty until you create your own itinerary."
+              ctaLabel="Create Trip"
+              ctaHref="/trips/new"
+            />
+          </div>
         ) : null}
         <div className="mt-6 grid gap-4">
           {trips.map((trip) => (

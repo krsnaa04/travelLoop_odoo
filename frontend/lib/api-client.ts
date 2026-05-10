@@ -13,9 +13,9 @@ import type {
   TripSummary,
 } from './contracts';
 
-// Use local Next.js API routes for mock data in development
-// In production, this can be overridden with NEXT_PUBLIC_API_URL
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? '/api';
+// Route authenticated requests to the real backend so data stays user-scoped.
+// In production, this can still be overridden with NEXT_PUBLIC_API_URL.
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001/api';
 
 const client = axios.create({
   baseURL: apiBaseUrl,

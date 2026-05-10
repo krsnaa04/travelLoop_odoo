@@ -43,19 +43,19 @@ describe('Login page', () => {
     fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: '123' } });
     fireEvent.click(screen.getByRole('button', { name: 'Login' }));
 
-    expect(await screen.findByText('Please provide a valid email and password (8+ characters).')).toBeInTheDocument();
+    expect(await screen.findByText('Please provide a valid email and password (6+ characters).')).toBeInTheDocument();
     expect(loginMock).not.toHaveBeenCalled();
   });
 
   it('logs in successfully and redirects', async () => {
     loginMock.mockResolvedValue({
       token: 'test-token',
-      user: { id: 'u1', email: 'demo@traveloop.dev', name: 'Demo' },
+      user: { id: 'u1', email: 'demo@traveloop.com', name: 'Demo' },
     });
 
     renderWithQueryClient(<LoginPage />);
 
-    fireEvent.change(screen.getByPlaceholderText('Email address'), { target: { value: 'demo@traveloop.dev' } });
+    fireEvent.change(screen.getByPlaceholderText('Email address'), { target: { value: 'demo@traveloop.com' } });
     fireEvent.change(screen.getByPlaceholderText('Password'), { target: { value: 'password123' } });
     fireEvent.click(screen.getByRole('button', { name: 'Login' }));
 

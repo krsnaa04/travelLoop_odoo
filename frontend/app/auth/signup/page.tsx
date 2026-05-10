@@ -1,6 +1,7 @@
 'use client';
 
 import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -13,8 +14,8 @@ const schema = z
   .object({
     name: z.string().min(2),
     email: z.string().email(),
-    password: z.string().min(8),
-    confirmPassword: z.string().min(8),
+    password: z.string().min(6),
+    confirmPassword: z.string().min(6),
   })
   .refine((value) => value.password === value.confirmPassword, {
     message: 'Passwords do not match.',
@@ -31,12 +32,27 @@ export default function SignupPage() {
     confirmPassword: '',
   });
   const [validationError, setValidationError] = useState<string | null>(null);
+  const [requestError, setRequestError] = useState<string | null>(null);
+
+  const readRequestError = (error: unknown) => {
+    if (axios.isAxiosError(error)) {
+      const message = error.response?.data?.message;
+      if (typeof message === 'string' && message.length > 0) {
+        return message;
+      }
+    }
+    return 'Registration failed. Try a different email.';
+  };
 
   const signupMutation = useMutation({
     mutationFn: authApi.register,
     onSuccess: (data) => {
+      setRequestError(null);
       setAuth(data.token, data.user);
       router.push('/dashboard');
+    },
+    onError: (error) => {
+      setRequestError(readRequestError(error));
     },
   });
 
@@ -61,6 +77,7 @@ export default function SignupPage() {
               return;
             }
             setValidationError(null);
+            setRequestError(null);
             signupMutation.mutate({
               name: parsed.data.name,
               email: parsed.data.email,
@@ -103,9 +120,7 @@ export default function SignupPage() {
           </button>
         </form>
           {validationError ? <p className="mt-4 text-sm text-rose-600">{validationError}</p> : null}
-          {signupMutation.isError ? (
-            <p className="mt-4 text-sm text-rose-600">Registration failed. Try a different email.</p>
-          ) : null}
+          {requestError ? <p className="mt-4 text-sm text-rose-600">{requestError}</p> : null}
           <p className="mt-4 text-sm text-slate-600">
             Already have an account?{' '}
             <Link href="/auth/login" className="font-medium text-teal-700">

@@ -16,7 +16,7 @@ vi.mock('./services/authService', () => ({
 describe('Auth routes', () => {
   const sampleUser: AuthUser = {
     id: 'a4c97896-0edc-4e89-b86d-bdcf276ff090',
-    email: 'demo@traveloop.dev',
+    email: 'demo@traveloop.com',
     name: 'Demo User',
   };
 

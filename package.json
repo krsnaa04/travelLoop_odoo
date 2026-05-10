@@ -4,7 +4,10 @@
   "description": "Personalized travel planning platform",
   "private": true,
   "scripts": {
+    "predev": "kill-port 3001 || exit 0",
     "dev": "concurrently \"npm run dev --workspace=frontend\" \"npm run dev --workspace=backend\"",
+    "dev:clean": "node -e \"require('node:fs').rmSync('frontend/.next',{recursive:true,force:true})\" && npm run dev",
+    "dev:stop": "kill-port 3000 3001 || exit 0",
     "build": "npm run build --workspace=frontend && npm run build --workspace=backend",
     "start": "npm start --workspace=backend",
     "test": "npm test --workspace=frontend && npm test --workspace=backend",
@@ -16,7 +19,8 @@
     "backend"
   ],
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "kill-port": "^2.0.1"
   },
   "engines": {
     "node": ">=18.0.0",

@@ -116,3 +116,19 @@ Executed query { duration: 9, rows: 0, inMemory: true }
 Executed query { duration: 2, rows: 6, inMemory: true }
 Executed query { duration: 14, rows: 0, inMemory: true }
 Executed query { duration: 109, rows: 0, inMemory: true }
+2:48:26 pm [tsx] change in ./src\schemas\authSchemas.ts Restarting...
+cTraveloop API running on port 3001
+Primary PostgreSQL unavailable. Running in in-memory demo DB mode.
+Executed query { duration: 4704, rows: 6, inMemory: true }
+Executed query { duration: 294, rows: 0, inMemory: true }
+Executed query { duration: 3, rows: 6, inMemory: true }
+2:50:59 pm [tsx] change in ./src\services\authService.ts Restarting...
+cTraveloop API running on port 3001
+2:55:30 pm [tsx] change in ./src\index.ts Restarting...
+cPort 3001 is already in use. Stop the other process or change PORT in backend/.env.
+2:55:42 pm [tsx] change in ./src\index.ts Rerunning...
+cTraveloop API running on port 3001
+3:04:44 pm [tsx] change in ./src\services\authService.ts Rerunning...
+cTraveloop API running on port 3001
+3:04:45 pm [tsx] change in ./src\services\authService.ts Restarting...
+cPort 3001 is already in use. Stop the other process or change PORT in backend/.env.
